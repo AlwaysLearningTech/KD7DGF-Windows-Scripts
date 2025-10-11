@@ -1,0 +1,35 @@
+# Windows temp files
+Thumbs.db
+Desktop.ini
+*.tmp
+*.temp
+
+# PowerShell
+*.ps1~
+*.psm1~
+
+# Log files
+*.log
+
+# Build artifacts
+*.intunewin
+*.zip
+
+# IDE and editor files
+.vscode/
+.vs/
+*.suo
+*.user
+.idea/
+
+# Mac files
+.DS_Store
+
+# Installer files (should be downloaded separately)
+*.msi
+*.exe
+*.cab
+
+# Backup files
+*.bak
+*~
