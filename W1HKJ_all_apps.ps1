@@ -1,21 +1,43 @@
-# W1HKJ Suite Installer (fldigi, flrig, flmsg, flamp, flwrap)
-# Intune Detection Rule (example for fldigi):
-#   Rule type: File
-#   Path: %ProgramFiles(x86)%\fldigi
-#   File or folder: fldigi.exe
-#   Detection method: File exists
-#
-# Repeat similar rules for flrig.exe, flmsg.exe, etc. if deploying separately.
+# W1HKJ Software Auto-Installer
+# Run PowerShell as Administrator
 
-$apps = @(
-    @{Name="fldigi"; Url="https://downloads.sourceforge.net/project/fldigi/fldigi/fldigi-4.1.26_setup.exe"; Installer="fldigi_setup.exe"},
-    @{Name="flrig"; Url="https://downloads.sourceforge.net/project/fldigi/flrig/flrig-1.4.7_setup.exe"; Installer="flrig_setup.exe"},
-    @{Name="flmsg"; Url="https://downloads.sourceforge.net/project/fldigi/flmsg/flmsg-4.0.23_setup.exe"; Installer="flmsg_setup.exe"}
-    # Add others as needed
+$DownloadRoot = "https://www.w1hkj.org/files/"
+$TempDir = "$env:TEMP\W1HKJ_Installers"
+New-Item -ItemType Directory -Force -Path $TempDir | Out-Null
+
+# Define software packages and their installer names
+$SoftwareList = @(
+    @{ Name = "fldigi";   File = "fldigi/fldigi-4.2.09_setup.exe" },
+    @{ Name = "flrig";    File = "flrig/flrig-2.0.09_setup.exe" },
+    @{ Name = "flmsg";    File = "flmsg-latest_setup.exe" },
+    @{ Name = "flamp";    File = "flamp-latest_setup.exe" },
+    @{ Name = "fllog";    File = "fllog-latest_setup.exe" },
+    @{ Name = "flnet";    File = "flnet-latest_setup.exe" },
+    @{ Name = "flwkey";   File = "flwkey-latest_setup.exe" },
+    @{ Name = "flwrap";   File = "flwrap-latest_setup.exe" },
+    @{ Name = "flcluster";File = "flcluster-latest_setup.exe" },
+    @{ Name = "flaa";     File = "flaa-latest_setup.exe" },
+    @{ Name = "nanoIO";   File = "nanoIO-latest_setup.exe" },
+    @{ Name = "kcat";     File = "kcat-latest_setup.exe" },
+    @{ Name = "comptext"; File = "test_suite/comptext-1.0.1_setup.exe" }
+    @{ Name = "comptty"; File = "test_suite/comptty-1.0.1_setup.exe" }
+    @{ Name = "comptext"; File = "test_suite/linsim-2.0.6_setup.exe" }
+    @{ Name = "comptext"; File = "test_suite/comptext-1.0.1_setup.exe" }
 )
 
-foreach ($app in $apps) {
-    $OutFile = "$env:TEMP\$($app.Installer)"
-    Invoke-WebRequest -Uri $app.Url -OutFile $OutFile
-    Start-Process -FilePath $OutFile -ArgumentList "/S" -Wait
+foreach ($app in $SoftwareList) {
+    $url = "$DownloadRoot$($app.File)"
+    $dest = Join-Path $TempDir $app.File
+
+    Write-Host "Downloading $($app.Name) from $url ..."
+    try {
+        Invoke-WebRequest -Uri $url -OutFile $dest -UseBasicParsing
+        Write-Host "Installing $($app.Name)..."
+        Start-Process -FilePath $dest -ArgumentList "/SILENT" -Wait
+    }
+    catch {
+        Write-Warning "Failed to download or install $($app.Name): $_"
+    }
 }
+
+Write-Host "All available W1HKJ software processed."
