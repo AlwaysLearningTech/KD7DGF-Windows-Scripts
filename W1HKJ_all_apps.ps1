@@ -7,8 +7,8 @@ New-Item -ItemType Directory -Force -Path $TempDir | Out-Null
 
 # Define software packages and their installer names
 $SoftwareList = @(
-    @{ Name = "fldigi";   File = "fldigi/fldigi-4.2.09_setup.exe" },
-    @{ Name = "flrig";    File = "flrig/flrig-2.0.09_setup.exe" },
+    @{ Name = "fldigi";   File = "fldigi-latest_setup.exe" },
+    @{ Name = "flrig";    File = "flrig-latest_setup.exe" },
     @{ Name = "flmsg";    File = "flmsg-latest_setup.exe" },
     @{ Name = "flamp";    File = "flamp-latest_setup.exe" },
     @{ Name = "fllog";    File = "fllog-latest_setup.exe" },
@@ -19,10 +19,9 @@ $SoftwareList = @(
     @{ Name = "flaa";     File = "flaa-latest_setup.exe" },
     @{ Name = "nanoIO";   File = "nanoIO-latest_setup.exe" },
     @{ Name = "kcat";     File = "kcat-latest_setup.exe" },
-    @{ Name = "comptext"; File = "test_suite/comptext-1.0.1_setup.exe" }
-    @{ Name = "comptty"; File = "test_suite/comptty-1.0.1_setup.exe" }
-    @{ Name = "comptext"; File = "test_suite/linsim-2.0.6_setup.exe" }
-    @{ Name = "comptext"; File = "test_suite/comptext-1.0.1_setup.exe" }
+    @{ Name = "comptext"; File = "test_suite/comptext-1.0.1_setup.exe" },
+    @{ Name = "comptty";  File = "test_suite/comptty-1.0.1_setup.exe" },
+    @{ Name = "linsim";   File = "test_suite/linsim-2.0.6_setup.exe" }
 )
 
 foreach ($app in $SoftwareList) {
