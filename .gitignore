@@ -1,0 +1,28 @@
+# Configuration file with personal data and secrets
+# This file contains callsign, license keys, passwords, API keys
+EmComm-Config.json
+
+# Logs
+*.log
+C:\Logs\*
+
+# Backup files
+*.bak
+*.backup
+
+# Temporary files
+*.tmp
+~$*
+
+# User-specific IDE settings
+.vscode/
+.idea/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride

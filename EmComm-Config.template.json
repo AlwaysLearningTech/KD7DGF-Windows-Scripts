@@ -1,0 +1,96 @@
+{
+  "_comment": "EmComm Configuration Template - COPY TO EmComm-Config.json",
+  "_instructions": [
+    "1. Copy this file: Copy-Item EmComm-Config.template.json EmComm-Config.json",
+    "2. Edit EmComm-Config.json with YOUR callsign, passwords, and license keys",
+    "3. EmComm-Config.json is gitignored - it will NEVER be committed",
+    "4. Set 'auto' for device/locator to enable automatic detection",
+    "5. Run: .\\Install-EmCommSuite.ps1 -ConfigFile EmComm-Config.json"
+  ],
+  
+  "operator": {
+    "callsign": "N0CALL",
+    "name": "Your Name",
+    "qth": "City, State",
+    "locator": "auto",
+    "antenna": "Dipole",
+    "_help": "Set locator='auto' for GPS detection (Location Services enabled automatically)"
+  },
+  
+  "audio": {
+    "captureDevice": "Digirig Mobile",
+    "playbackDevice": "Digirig Mobile",
+    "sampleRate": 48000,
+    "txAttenuation": -3.0
+  },
+  
+  "rig": {
+    "enabled": false,
+    "useFlrig": false,
+    "model": "FT-817",
+    "device": "auto",
+    "baudRate": 9600,
+    "_help": "Set device='auto' for COM port detection (finds Digirig, FTDI, etc.)"
+  },
+  
+  "ptt": {
+    "method": "VOX",
+    "delay": 200
+  },
+  
+  "vara": {
+    "hf": { "enabled": true, "soundcard": "Digirig Mobile" },
+    "fm": {
+      "enabled": false,
+      "soundcard": "Digirig Mobile",
+      "licenseKey": "",
+      "_help": "$69 license from https://rosmodem.wordpress.com/ - Format: XXXX-XXXX-XXXX-XXXX"
+    }
+  },
+  
+  "winlink": {
+    "enabled": true,
+    "password": "",
+    "_help": "Register at https://winlink.org/user"
+  },
+  
+  "aprs": {
+    "enabled": false,
+    "ssid": "9",
+    "symbol": "/[",
+    "comment": "EmComm Station",
+    "igatePasscode": "",
+    "_help": "Passcode from https://apps.magicbug.co.uk/passcode/ - only for iGate operation"
+  },
+  
+  "echolink": {
+    "enabled": true,
+    "callsign": "",
+    "password": "",
+    "_help": "Register at https://echolink.org/"
+  },
+  
+  "apis": {
+    "aprs_fi": "",
+    "qrz_com": "",
+    "_help": "Optional API keys for enhanced features"
+  },
+  
+  "radioPresets": {
+    "btech_uvpro": {
+      "_note": "VOX PTT only (no CAT control)",
+      "rig": { "enabled": false, "device": "auto" },
+      "ptt": { "method": "VOX" }
+    },
+    "anytone_d878": {
+      "_note": "Use flrig for best compatibility",
+      "rig": { "enabled": true, "useFlrig": true, "device": "auto" },
+      "ptt": { "method": "CAT" }
+    },
+    "anytone_d578": {
+      "_note": "Connect via 6-pin data port",
+      "rig": { "enabled": true, "useFlrig": true, "device": "auto" },
+      "ptt": { "method": "CAT" }
+    }
+  }
+}
