@@ -13,6 +13,7 @@ C:\Logs\*
 # Temporary files
 *.tmp
 ~$*
+.DS_Store
 
 # User-specific IDE settings
 .vscode/
